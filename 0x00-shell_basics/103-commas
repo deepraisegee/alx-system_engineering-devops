@@ -1,2 +1,2 @@
 #!/bin/bash
-command ls -almF
+ls -map|sort -d
