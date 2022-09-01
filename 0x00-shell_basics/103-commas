@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -almF
+command ls -almF
