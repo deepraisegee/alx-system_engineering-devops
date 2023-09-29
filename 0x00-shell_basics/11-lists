@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -flaU . .. /boot
+ls -Ufla . .. /boot
