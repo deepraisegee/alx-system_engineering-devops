@@ -16,7 +16,7 @@ do
 		;;
 
 		17)
-		printf "17\nbad luck form Italy\n"
+		printf "17\nbad luck from Italy\n"
 		;;
 
 		*)
