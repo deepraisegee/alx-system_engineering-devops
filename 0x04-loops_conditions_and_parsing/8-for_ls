@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# echo "The content of the current directorywith for loop"
+
+for i in "ls"; do
+	"basename $i"
+done
