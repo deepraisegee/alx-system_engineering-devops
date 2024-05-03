@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# echo "Best School 10 time with for loop"
+# echo "Best School 10 time with until loop"
 
 COUNTER=0
 
