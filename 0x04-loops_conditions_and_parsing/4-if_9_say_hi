@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# echo "Best School 10 time with while loop"
+
+COUNTER=1
+
+while [ "$COUNTER" -le 10 ]
+do
+	if [ "$COUNTER" -eq 9 ]; then
+		printf "Best School\nHi\n"
+	else
+		echo "Best School"
+	fi
+	
+	COUNTER=$((COUNTER+1))
+done
