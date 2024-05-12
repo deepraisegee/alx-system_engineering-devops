@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
 # List all active IPv4 IPs on the local machine
 
-ifconfig | grep -Eo \
-"inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | \
-grep -Eo "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
+ifconfig | grep 'inet ' | awk {'print $2'}
