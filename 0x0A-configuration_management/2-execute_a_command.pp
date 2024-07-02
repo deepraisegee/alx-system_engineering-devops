@@ -1,5 +1,5 @@
 # a manifest that kills a process named killmenow.
 
-exec { '':
-    pass
+exec { 'kill process':
+    command => '/usr/bin/pkill -x killmenow',
 }
