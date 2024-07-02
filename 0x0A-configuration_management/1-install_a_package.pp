@@ -3,7 +3,7 @@
 $deps = ['python3', 'python3-pip']
 
 package { $deps:
-    ensure  => installed,
+    ensure  => 'installed',
 }
 
 exec { 'install flask':
