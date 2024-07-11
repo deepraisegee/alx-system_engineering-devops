@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
+# ssh connect to remote
 
 ssh -i ~/.ssh/school ubuntu@52.73.38.28 
