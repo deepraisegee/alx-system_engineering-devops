@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# tranfer file from client to server
+
+PATH_TO_FILE=$1
+IP=$2
+USERNAME=$3
+PATH_TO_SSH_KEY=$4
+
+scp -i $PATH_TO_SSH_KEY $PATH_TO_FILE "$USERNAME@$IP:~/" 
