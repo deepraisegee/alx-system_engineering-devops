@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# install nginx on the server
+
+echo "Update and install Nginx..."
+apt-get update -y
+apt-get install nginx -y
+
+echo "Creating index.html file..."
+mkdir -p /etc/nginx/html
+echo "Hello World" >> /etc/nginx/html/index.html
+
+echo "Configuring Nginx....."
+printf %s "server {
+	listen	80 default_server;
+	listen	[::]:80 default_server;
+	root	/etc/nginx/html;
+	index	index.html index.htm;
+}" >> /etc/nginx/sites-available/default
+
+echo "Restarting Nginx..."
+system nginx restart
