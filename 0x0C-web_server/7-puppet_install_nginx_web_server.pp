@@ -50,4 +50,10 @@ node '52.73.38.28' {
     notify  => Service['nginx'],
   }
 
+  file { '/etc/nginx/sites-enabled/default':
+    ensure  => link,
+    target  => 'etc/nginx/sites-available/default',
+    require => File['/etc/nginx/sites-available/default'],
+  }
+
 }
