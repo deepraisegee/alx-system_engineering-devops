@@ -28,7 +28,7 @@ node '52.73.38.28' {
 
   file { '/etc/nginx/sites-available/default':
     ensure  => file,
-    content => @(END),
+    content => @("END"),
 		  server {
 			  listen		80 default_server;
 			  listen		[::]:80 default_server;
@@ -45,14 +45,15 @@ node '52.73.38.28' {
 				  root /etc/nginx/html;
 				  internal;
 			  }
-		  } END
+		  }
+	END
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
 
   file { '/etc/nginx/sites-enabled/default':
     ensure  => link,
-    target  => 'etc/nginx/sites-available/default',
+    target  => '/etc/nginx/sites-available/default',
     require => File['/etc/nginx/sites-available/default'],
   }
 
