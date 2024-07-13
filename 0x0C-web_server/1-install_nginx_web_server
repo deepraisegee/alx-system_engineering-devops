@@ -22,4 +22,4 @@ printf %s "server {
 }" >> /etc/nginx/sites-available/default
 
 echo "Restarting Nginx..."
-system nginx restart
+service nginx restart
