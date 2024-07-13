@@ -15,6 +15,10 @@ printf %s "server {
 	listen	[::]:80 default_server;
 	root	/etc/nginx/html;
 	index	index.html index.htm;
+
+	location / {
+       return 200 /etc/nginx/html/index.html;
+	}
 }" >> /etc/nginx/sites-available/default
 
 echo "Restarting Nginx..."
