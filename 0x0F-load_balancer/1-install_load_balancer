@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# install and configure a load balancer
+
+# install HAProxy on Ubuntu 20.04LTS
+# https://haproxy.debian.net/#distribution=Ubuntu&release=focal&version=2.8
+echo "Installing HAProxy for Ubuntu 20.04 Focal..."
+apt-get update -y
+apt-get install --no-install-recommends software-properties-common -y
+apt-get-repository ppa:vbernat/haproxy-2.8 -y
+apt-get install haproxy=2.8.\* -y
+
+# configure the HAProxy to listen to port 80 and direct the
+# requests to the appropraite servers
+echo "Configuring HAProxy for load balancing..."
+printf %s "
+global
+	log /dev/log local0
+	log /dev/log local1 notice
+	chroot /var/lib/haproxy
+	stats socket /run/haproxy/admin.sock mode 660 level admin
+	user haproxy
+	group haproxy
+	daemon
+
+defaults
+	log	global
+	mode	http
+	option	httplog
+	option	dontlognull
+	timeout connect 5000
+	timeout client 50000
+	timeout server 50000
+
+frontend http_front
+	bind	*:80
+	default_backend	http_back
+
+backend http_back
+	balance	roundrobin
+	server 151833-web-01 52.73.38.28:80 check
+	server 151833-web-02 54.209.247.55:80 check
+" > /etc/haproxy/haproxy.cfg
+
+# restar HAProxy service
+echo "Restarting HAProxy..."
+service haproxy restart
