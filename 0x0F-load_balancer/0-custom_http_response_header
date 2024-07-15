@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# install nginx on the server
+
+echo "Update and install Nginx..."
+apt-get update -y
+apt-get install nginx -y
+
+echo "Creating index.html file..."
+mkdir -p /etc/nginx/html
+echo "Hello World!" > /etc/nginx/html/index.html
+echo "Ceci n'est pas une page" > /etc/nginx/html/404.html
+
+echo "Configuring Nginx....."
+printf %s "server {
+	listen		80 default_server;
+	listen		[::]:80 default_server;
+	root		/etc/nginx/html;
+	index		index.html;
+
+	error_page	404 /404.html;
+
+	add_header	X-Served_by $(hostname);
+
+	location /redirect_me {
+		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+	}
+
+	location /404 {
+		root /etc/nginx/html;
+		internal;
+	}
+}" > /etc/nginx/sites-available/default
+
+echo "Restarting Nginx..."
+service nginx restart
