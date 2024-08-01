@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-""" """
-
-import sys
+""" Get todo information of a given user id """
 
 import requests
+import sys
 
 
 def main():
