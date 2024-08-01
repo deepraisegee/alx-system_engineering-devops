@@ -18,11 +18,6 @@ def main():
 
     completed = list(filter(lambda x: x["completed"], todos))
 
-    print("Employee {} is done with tasks({}/{}):".format(
-                    user["name"], len(completed), len(todos)
-                ))
-    [print(f"\t {todo['title']}") for todo in completed]
-
     # write to csv
     with open(f"{USER_ID}.csv", "w", newline="") as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
