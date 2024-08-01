@@ -20,8 +20,7 @@ def main():
     print("Employee {} is done with tasks({}/{})".format(
                     user["name"], len(completed), len(todos)
                 ))
-    for todo in completed:
-        print(f"\t{todo['title']}")
+    [print(f"\t {todo['title']}") for todo in completed]
 
 
 if __name__ == "__main__":
