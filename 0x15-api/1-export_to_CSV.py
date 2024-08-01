@@ -24,7 +24,7 @@ def main():
     [print(f"\t {todo['title']}") for todo in completed]
 
     # write to csv
-    with open(f"{USER_ID}.csv", "w") as csvfile:
+    with open(f"{USER_ID}.csv", "w", newline="") as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         [writer.writerow(
             [USER_ID, user["name"], todo["completed"], todo["title"]]
