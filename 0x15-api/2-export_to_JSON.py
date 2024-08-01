@@ -1,19 +1,33 @@
 #!/usr/bin/python3
-"""Returns tODO list information for a given ID."""
+""" Get todo information of a given user id """
+
 import json
 import requests
 import sys
 
-if __name__ == "__main__":
-    url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(url + "users/{}".format(sys.argv[1])).json()
-    user_name = user.get("username")
-    todos = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
-    user_id = sys.argv[1]
 
-    with open("{}.json".format(user_id), "w") as jsonfile:
-        json.dump({user_id: [{
-                "task": t.get("title"),
-                "completed": t.get("completed"),
-                "username": user_name
-            } for t in todos]}, jsonfile)
+def main():
+    USER_ID = sys.argv[1]
+    url = "https://jsonplaceholder.typicode.com"
+
+    # get employee data
+    user = requests.get(f"{url}/users/{USER_ID}").json()
+
+    # get the todos of the user
+    todos = requests.get(f"{url}/todos", params={"userId": USER_ID}).json()
+
+    completed = list(filter(lambda x: x["completed"], todos))
+
+    # export to JSON
+    with open(f"{USER_ID}.json", "w") as jsonfile:
+        json.dump({USER_ID: [
+            {
+                "task": todo["title"],
+                "completed": todo["completed"],
+                "username": user["username"]
+            } for todo in todos
+        ]}, jsonfile)
+
+
+if __name__ == "__main__":
+    main()
