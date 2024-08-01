@@ -18,7 +18,7 @@ def main():
     completed = list(filter(lambda x: x["completed"], todos))
 
     print("Employee {} is done with tasks({}/{})".format(
-                    user["name"], len(todos), len(completed)
+                    user["name"], len(completed), len(todos)
                 ))
     for todo in completed:
         print(f"\t{todo['title']}")
