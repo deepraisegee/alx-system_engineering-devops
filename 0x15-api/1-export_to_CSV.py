@@ -27,7 +27,7 @@ def main():
     with open(f"{USER_ID}.csv", "w", newline="") as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         [writer.writerow(
-            [USER_ID, user["name"], todo["completed"], todo["title"]]
+            [USER_ID, user["username"], todo["completed"], todo["title"]]
         ) for todo in todos]
 
 
